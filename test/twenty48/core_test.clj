@@ -85,7 +85,28 @@
                        (0 4 2 8))]
       (is (= expected-grid (move-grid-right input-grid))))))
 
+(deftest add-repeating-numbers
+  (testing "should give a coll after adding all the twice occuring consequent items"
+    (let [input-coll [2 4 4 2]
+          expected-coll [2 8 2]]
+      (is (= (add-repeating-nums input-coll) expected-coll))))
+
+  (testing "should give the coll back when there are no twice occuring consequent items"
+    (let [input-coll [2 4 2 4]
+          expected-coll [2 4 2 4]]
+      (is (= (add-repeating-nums input-coll) expected-coll)))))
+
 (deftest moving-grid-left
+  (testing "should append remaining zeros to the given coll for count being 4"
+    (let [input-coll [2 4]
+          expected-coll [2 4 0 0]]
+      (is (= (append-zeros input-coll) expected-coll))))
+
+  (testing "should not append zeros when given coll has 4 elements"
+    (let [input-coll [2 4 4 4]
+          expected-coll [2 4 4 4]]
+      (is (= (append-zeros input-coll) expected-coll))))
+  
   (testing "rows with numbers that repeat"
     (is (= '((4 0 0 0)
              (2 4 0 0)
@@ -95,7 +116,18 @@
             '((0 0 2 2)
               (0 2 0 4)
               (2 0 2 0)
-              (0 4 4 0)))))))
+              (0 4 4 0))))))
+
+  (testing "rows with numbers that doesn't repeat consequently"
+    (is (= '((2 4 2 4)
+             (4 4 0 0)
+             (0 0 0 0)
+             (8 4 0 0))
+           (move-grid-left
+            '((2 4 2 4)
+              (0 2 2 4)
+              (0 0 0 0)
+              (0 4 4 4)))))))
 
 (deftest moving-grid-up
   (testing "rows with numbers that repeat"
