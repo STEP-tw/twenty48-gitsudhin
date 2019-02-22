@@ -169,25 +169,25 @@
               (2 0 2 0)
               (4 4 4 0)))))))
 
-; (deftest moving-grid-down
-;   (testing "rows with numbers that repeat"
-;     (is (= '((0 0 0 0)
-;              (0 0 0 0)
-;              (0 2 4 2)
-;              (2 4 4 4))
-;            (move-grid-down
-;             '((0 0 2 2)
-;               (0 2 0 4)
-;               (2 0 2 0)
-;               (0 4 4 0))))))
+(deftest moving-grid-down
+  (testing "rows with numbers that repeat"
+    (is (= '((0 0 0 0)
+             (0 0 0 0)
+             (0 2 4 2)
+             (2 4 4 4))
+           (move-grid-down
+            '((0 0 2 2)
+              (0 2 0 4)
+              (2 0 2 0)
+              (0 4 4 0))))))
   
-;   (testing "rows with numbers that doesn't repeat consequently"
-;     (is (=  '((4 0 2 0)
-;               (8 4 4 0)
-;               (2 2 2 2)
-;               (4 4 4 4))
-;             (move-grid-down
-;              '((4 4 2 2)
-;                (8 2 4 4)
-;                (2 4 2 0)
-;                (4 0 4 0)))))))
+  (testing "rows with numbers that doesn't repeat consequently"
+    (is (=  '((4 0 2 0)
+              (8 4 4 0)
+              (2 2 2 2)
+              (4 4 4 4))
+            (move-grid-down
+             '((4 4 2 2)
+               (8 2 4 4)
+               (2 4 2 0)
+               (4 0 4 0)))))))

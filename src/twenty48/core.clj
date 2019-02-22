@@ -38,7 +38,6 @@
   "Moves an entire grid up"
   (comp transpose (partial move-grid-left) (partial transpose)))
 
-(defn move-grid-down
+(def move-grid-down
   "Moves an entire grid down"
-  [grid]
-  grid)
+  (comp transpose (partial move-grid-right) (partial transpose)))
