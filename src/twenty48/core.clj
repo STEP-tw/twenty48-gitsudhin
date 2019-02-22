@@ -15,6 +15,8 @@
 
 (def add-repeating-nums (comp flatten sum-up-colls partition-doubles))
 
+(def transpose (partial apply map vector))
+
 (def move-row-right (comp prepend-zeros
                           reverse
                           add-repeating-nums remove-zeros
@@ -32,12 +34,11 @@
   "Moves an entire grid to the left"
   (partial map move-row-left))
 
+(def move-grid-up
+  "Moves an entire grid up"
+  (comp transpose (partial move-grid-left) (partial transpose)))
+
 (defn move-grid-down
   "Moves an entire grid down"
-  [grid]
-  grid)
-
-(defn move-grid-up
-  "Moves an entire grid up"
   [grid]
   grid)

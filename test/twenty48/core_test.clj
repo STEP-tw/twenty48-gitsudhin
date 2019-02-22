@@ -106,7 +106,7 @@
     (let [input-coll [2 4 4 4]
           expected-coll [2 4 4 4]]
       (is (= (append-zeros input-coll) expected-coll))))
-  
+
   (testing "rows with numbers that repeat"
     (is (= '((4 0 0 0)
              (2 4 0 0)
@@ -129,6 +129,23 @@
               (0 0 0 0)
               (0 4 4 4)))))))
 
+(deftest transpose-grid
+  (testing "should give transpose of given 2X2 matrix"
+    (let [input-matrix [[1 2]
+                        [3 4]]
+          expected-matrix [[1 3]
+                           [2 4]]]
+      (is (= (transpose input-matrix) expected-matrix))))
+
+  (testing "should give transpose of given 3X3 matrix"
+    (let [input-matrix [[1 2 3]
+                        [4 5 6]
+                        [7 8 9]]
+          expected-matrix [[1 4 7]
+                           [2 5 8]
+                           [3 6 9]]]
+      (is (= (transpose input-matrix) expected-matrix)))))
+
 (deftest moving-grid-up
   (testing "rows with numbers that repeat"
     (is (= '((2 2 4 2)
@@ -139,16 +156,38 @@
             '((0 0 2 2)
               (0 2 0 4)
               (2 0 2 0)
-              (0 4 4 0)))))))
+              (0 4 4 0))))))
 
-(deftest moving-grid-down
-  (testing "rows with numbers that repeat"
-    (is (= '((0 0 0 0)
-             (0 0 0 0)
-             (0 2 4 2)
-             (2 4 4 4))
-           (move-grid-down
-            '((0 0 2 2)
-              (0 2 0 4)
+  (testing "rows with numbers that doesn't repeat consequently"
+    (is (= '((4 4 2 2)
+             (8 2 4 4)
+             (2 4 2 0)
+             (4 0 4 0))
+           (move-grid-up
+            '((4 4 2 2)
+              (8 2 4 4)
               (2 0 2 0)
-              (0 4 4 0)))))))
+              (4 4 4 0)))))))
+
+; (deftest moving-grid-down
+;   (testing "rows with numbers that repeat"
+;     (is (= '((0 0 0 0)
+;              (0 0 0 0)
+;              (0 2 4 2)
+;              (2 4 4 4))
+;            (move-grid-down
+;             '((0 0 2 2)
+;               (0 2 0 4)
+;               (2 0 2 0)
+;               (0 4 4 0))))))
+  
+;   (testing "rows with numbers that doesn't repeat consequently"
+;     (is (=  '((4 0 2 0)
+;               (8 4 4 0)
+;               (2 2 2 2)
+;               (4 4 4 4))
+;             (move-grid-down
+;              '((4 4 2 2)
+;                (8 2 4 4)
+;                (2 4 2 0)
+;                (4 0 4 0)))))))
